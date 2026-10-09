@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Teodor Stoyanov — Computer Science Student</title>
+  <meta name="description" content="Teodor Stoyanov — Computer Science student at TU Dublin interested in systems development and AI. Projects, experience and skills.">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌿</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <!-- apply a saved theme before first paint -->
+  <script>try { var t = localStorage.getItem("theme"); if (t === "dark" || t === "light") document.documentElement.dataset.theme = t; } catch (e) {}</script>
+</head>
+<body>
+
+  <!-- EFFECT 1: scroll progress bar -->
+  <div class="progress" id="progress" aria-hidden="true"></div>
+
+  <!-- EFFECT 2: section rail — every topic is a (silent) guitar string -->
+  <nav class="rail" aria-label="Jump between sections">
+    <a href="#intro" data-label="Intro"><span class="rail__string"></span></a>
+    <a href="#projects" data-label="Projects"><span class="rail__string"></span></a>
+    <a href="#experience" data-label="Experience"><span class="rail__string"></span></a>
+    <a href="#skills" data-label="Skills"><span class="rail__string"></span></a>
+    <a href="#reviews" data-label="Reviews"><span class="rail__string"></span></a>
+    <a href="#contact" data-label="Contact"><span class="rail__string"></span></a>
+  </nav>
+
+  <!-- ============ NAV ============ -->
+  <header class="nav">
+    <a class="nav__logo" href="#top">Teodor Stoyanov</a>
+    <nav class="nav__links" aria-label="Sections">
+      <a href="#projects">Projects</a>
+      <a href="#experience">Experience</a>
+      <a href="#skills">Skills</a>
+      <a href="#reviews">Reviews</a>
+    </nav>
+    <div class="nav__actions">
+      <button class="theme-toggle" id="themeToggle" type="button" aria-label="Toggle dark mode">
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+      </button>
+      <a class="btn btn--primary btn--sm" href="#contact">Say hello</a>
+    </div>
+  </header>
+
+  <main id="top">
+
+    <!-- ============ HERO ============ -->
+    <section class="hero" id="intro">
+      <div class="container hero__grid">
+        <div class="hero__copy">
+          <p class="eyebrow mono">Computer Science · TU Dublin · Systems &amp; AI</p>
+          <h1 class="hero__title">Building software,<br>and the <em>infrastructure</em><br>it runs on.</h1>
+          <p class="hero__lead">
+            I'm Teodor — a second-year Computer Science student who takes initiative and likes
+            building things people actually use. Most recently, a recruitment game played by
+            90+ students at TU Dublin's society fair, running on infrastructure I set up myself.
+          </p>
+          <p class="hero__roles mono">Currently: <span class="typer" id="typer"></span><span class="caret">|</span></p>
+          <div class="hero__cta">
+            <!-- EFFECT 6: magnetic buttons -->
+            <a class="btn btn--primary magnetic" href="#projects">View projects</a>
+            <a class="btn btn--ghost magnetic" href="#contact">Get in touch</a>
+          </div>
+        </div>
+        <!-- EFFECT 11: interactive whoami terminal — click it and type 'help' -->
+        <div class="terminal">
+          <div class="terminal__bar">
+            <span class="terminal__dot terminal__dot--r"></span>
+            <span class="terminal__dot terminal__dot--y"></span>
+            <span class="terminal__dot terminal__dot--g"></span>
+            <span class="terminal__title mono">teodor@portfolio: ~</span>
+          </div>
+          <div class="terminal__screen" id="termScreen">
+            <div id="termOut" aria-live="polite"></div>
+            <form class="terminal__line" id="termForm">
+              <label class="terminal__prompt mono" for="termInput">$</label>
+              <input class="terminal__input mono" id="termInput" type="text"
+                     autocomplete="off" autocapitalize="off" spellcheck="false"
+                     placeholder="type 'help' and hit enter" aria-label="Terminal input">
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ PROJECTS ============ -->
+    <section class="section" id="projects">
+      <div class="container">
+        <p class="eyebrow mono reveal">01 — Projects</p>
+        <h2 class="section__title reveal">Selected work</h2>
+        <p class="section__sub reveal">Things I've built and run in production — most of them outside of coursework.</p>
+
+        <div class="projects">
+          <article class="card project project--featured reveal">
+            <div class="project__main">
+              <p class="project__type mono">Featured · Full-stack · CS++ Society</p>
+              <h3 class="project__name">jumpflip</h3>
+              <p class="project__desc">A Flappy Bird-style recruitment game I designed, built and deployed for the CS++ Society. It was played by 90+ students across 1,500+ games at TU Dublin's society fair, and students signed up to the society along the way.</p>
+              <ul class="project__points">
+                <li>Owned it end to end in production: Docker containerisation, Traefik and Nginx/HTTPS routing, health checks and persistent storage.</li>
+                <li>Scores can't be faked: the browser sends only the player's inputs, and the server replays the run to work out the score.</li>
+                <li>Password-protected organiser dashboard with search and CSV export, so student numbers never appear on the public screen.</li>
+              </ul>
+              <ul class="tags"><li>Node.js</li><li>Express</li><li>SQLite</li><li>Docker</li><li>Traefik</li><li>Nginx</li></ul>
+              <div class="project__links">
+                <a class="project__link" href="https://flappy.cspp.ie" target="_blank" rel="noopener">Play it live ↗</a>
+                <a class="project__link" href="https://github.com/TeodorStS/jumpflip" target="_blank" rel="noopener">Code →</a>
+              </div>
+            </div>
+            <ol class="project__steps">
+              <li><span class="mono">01</span>Scan the QR code at the CS++ stand</li>
+              <li><span class="mono">02</span>Sign in with your student number and play on your phone</li>
+              <li><span class="mono">03</span>Climb the live leaderboard on the stand display</li>
+            </ol>
+          </article>
+
+          <article class="card project reveal">
+            <p class="project__type mono">Infrastructure · DevOps</p>
+            <h3 class="project__name">homelab-stack</h3>
+            <p class="project__desc">A self-hosted Ubuntu server on Hetzner running Docker Compose services (monitoring, a dashboard and a password manager) behind Nginx and Let's Encrypt, protected by UFW and Fail2ban. I learned by breaking things: Docker networking, health checks and a memory outage.</p>
+            <ul class="tags"><li>Docker Compose</li><li>Nginx</li><li>Certbot</li><li>UFW</li><li>Fail2ban</li></ul>
+            <div class="project__links">
+              <a class="project__link" href="https://github.com/TeodorStS/homelab-stack" target="_blank" rel="noopener">Code →</a>
+            </div>
+          </article>
+
+          <article class="card project reveal">
+            <p class="project__type mono">Python · AI</p>
+            <h3 class="project__name">Tic-Tac-Toe</h3>
+            <p class="project__desc">Tic-tac-toe against an unbeatable minimax AI. It started as a pygame app; I then split the game logic out behind a Flask API with a JavaScript frontend and containerised it with Docker.</p>
+            <ul class="tags"><li>Python</li><li>Flask</li><li>pygame</li><li>JavaScript</li><li>Docker</li></ul>
+            <div class="project__links">
+              <a class="project__link" href="https://github.com/TeodorStS/TIc-Tac-Toe" target="_blank" rel="noopener">Code →</a>
+            </div>
+          </article>
+
+          <article class="card project reveal">
+            <p class="project__type mono">Web app</p>
+            <h3 class="project__name">typetest</h3>
+            <p class="project__desc">A monkeytype-style typing test with time, word-count and infinite modes, live WPM and accuracy, personal bests per mode and 30 switchable themes. It uses no frameworks and has no build step.</p>
+            <ul class="tags"><li>JavaScript</li><li>HTML</li><li>CSS</li></ul>
+            <div class="project__links">
+              <a class="project__link" href="https://teodorsts.github.io/typetest/" target="_blank" rel="noopener">Try it ↗</a>
+              <a class="project__link" href="https://github.com/TeodorStS/typetest" target="_blank" rel="noopener">Code →</a>
+            </div>
+          </article>
+
+        </div>
+
+        <p class="projects__more reveal">I've also built and deployed websites for local and family businesses. <a href="https://github.com/TeodorStS" target="_blank" rel="noopener">More on GitHub →</a></p>
+      </div>
+    </section>
+
+    <!-- ============ EXPERIENCE ============ -->
+    <section class="section section--warm" id="experience">
+      <div class="container">
+        <p class="eyebrow mono reveal">02 — Experience</p>
+        <h2 class="section__title reveal">Experience &amp; education</h2>
+
+        <h3 class="timeline-group reveal">Experience</h3>
+        <div class="timeline">
+          <article class="timeline__item reveal">
+            <p class="timeline__date mono">May 2026 — now</p>
+            <div class="timeline__body">
+              <h3 class="timeline__role">Systems Administrator · <span>CS++, TU Dublin CS Society</span></h3>
+              <p class="timeline__desc">Volunteer committee role managing the society's server infrastructure. I build and host games that help register new members, maintain the society's main website, and keep its virtual machines and infrastructure up to date.</p>
+            </div>
+          </article>
+          <article class="timeline__item reveal">
+            <p class="timeline__date mono">Jan 2026 — now</p>
+            <div class="timeline__body">
+              <h3 class="timeline__role">Secretary · <span>Enactus TU Dublin</span></h3>
+              <p class="timeline__desc">I support the running of the society and its social-enterprise projects. I was part of the pitching team that placed first in the UK &amp; Ireland regional qualifiers and qualified for the Enactus World Cup in Brazil.</p>
+            </div>
+          </article>
+          <article class="timeline__item reveal">
+            <p class="timeline__date mono">Jun — Aug 2026</p>
+            <div class="timeline__body">
+              <h3 class="timeline__role">Waiter (summer job) · <span>Bulgartransgas, Varna</span></h3>
+              <p class="timeline__desc">I worked as part of a busy team, coordinating with colleagues to keep service running smoothly.</p>
+            </div>
+          </article>
+        </div>
+
+        <h3 class="timeline-group reveal">Education</h3>
+        <div class="timeline">
+          <article class="timeline__item reveal">
+            <p class="timeline__date mono">Sept 2025 — May 2029</p>
+            <div class="timeline__body">
+              <h3 class="timeline__role">BSc (Hons) Computer Science · <span>TU Dublin (TU856)</span></h3>
+              <p class="timeline__desc">Modules include Programming, Data Structures &amp; Algorithms, Web Development, Computer Architecture, Operating Systems, Mathematics and Microprocessors. My current GPA is 3.8/4, and I placed 2nd and 3rd in hackathons focused on solving sustainability problems.</p>
+            </div>
+          </article>
+          <article class="timeline__item reveal">
+            <p class="timeline__date mono">Sept 2020 — May 2025</p>
+            <div class="timeline__body">
+              <h3 class="timeline__role">High School of Mathematics "Dr. Petar Beron" · <span>Varna, Bulgaria</span></h3>
+              <p class="timeline__desc">A school focused on Mathematics, Programming and English, where I studied programming in C#, MySQL, data structures &amp; algorithms and advanced mathematics.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ SKILLS ============ -->
+    <section class="section" id="skills">
+      <div class="container">
+        <p class="eyebrow mono reveal">03 — Skills</p>
+        <h2 class="section__title reveal">Toolbox</h2>
+        <p class="section__sub reveal">The languages and tools I work with, from coursework to production.</p>
+
+        <div class="skills">
+          <div class="card skill-group reveal">
+            <h3 class="skill-group__title">Programming languages</h3>
+            <ul class="tags tags--lg"><li>Python</li><li>C</li><li>C#</li><li>Java</li><li>JavaScript</li><li>MySQL</li><li>PostgreSQL</li></ul>
+          </div>
+          <div class="card skill-group reveal">
+            <h3 class="skill-group__title">Infrastructure &amp; DevOps</h3>
+            <ul class="tags tags--lg"><li>Docker</li><li>Docker Compose</li><li>Nginx</li><li>Traefik</li><li>Certbot / Let's Encrypt</li><li>UFW</li><li>Fail2ban</li><li>Makefile automation</li><li>Health checks &amp; restart policies</li></ul>
+          </div>
+          <div class="card skill-group reveal">
+            <h3 class="skill-group__title">Frameworks &amp; platforms</h3>
+            <ul class="tags tags--lg"><li>Node.js</li><li>Express</li><li>Flask</li><li>SQLite</li><li>pygame</li><li>Ubuntu Linux</li><li>Git &amp; GitHub</li></ul>
+          </div>
+          <div class="card skill-group reveal">
+            <h3 class="skill-group__title">Spoken languages</h3>
+            <ul class="lang-list">
+              <li><span>Bulgarian</span><span class="mono">native</span></li>
+              <li><span>English</span><span class="mono">fluent</span></li>
+              <li><span>German</span><span class="mono">B1</span></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ REVIEWS ============ -->
+    <section class="section section--warm" id="reviews">
+      <div class="container">
+        <p class="eyebrow mono reveal">04 — Album reviews</p>
+        <h2 class="section__title reveal">On the turntable</h2>
+        <p class="section__sub reveal">Short, honest write-ups of records worth your time.</p>
+
+        <div class="reviews">
+
+          <article class="card review reveal">
+            <!-- EFFECT 9: vinyl peek on hover -->
+            <div class="review__art" aria-hidden="true">
+              <div class="review__disc"></div>
+              <div class="review__cover" style="--c1:#39394a;--c2:#131318;">
+                <span>MASTER OF PUPPETS</span>
+              </div>
+            </div>
+            <div class="review__body">
+              <p class="review__meta mono">Metallica · 1986 · Thrash metal</p>
+              <h3 class="review__title">Master of Puppets</h3>
+              <p class="review__rating" aria-label="Rating: 5 out of 5">
+                <span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span>
+                <span class="review__score mono">5.0</span>
+              </p>
+              <p class="review__hook">The downpicking endurance test that built a genre.</p>
+              <details class="review__more">
+                <summary>Read the full review</summary>
+                <p>Eight tracks, zero filler. The title track alone is a masterclass in arrangement — riff after riff stacked with intent, and the clean middle section is the best breather in metal history. "Orion" proves Cliff Burton was operating on another plane. If you only ever hear one thrash record, it's this one.</p>
+              </details>
+            </div>
+          </article>
+
+          <article class="card review reveal">
+            <div class="review__art" aria-hidden="true">
+              <div class="review__disc"></div>
+              <div class="review__cover" style="--c1:#24443c;--c2:#0b1512;">
+                <span>BLACKWATER PARK</span>
+              </div>
+            </div>
+            <div class="review__body">
+              <p class="review__meta mono">Opeth · 2001 · Progressive death metal</p>
+              <h3 class="review__title">Blackwater Park</h3>
+              <p class="review__rating" aria-label="Rating: 4.5 out of 5">
+                <span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot half"></span>
+                <span class="review__score mono">4.5</span>
+              </p>
+              <p class="review__hook">Beauty and brutality merged into one 67-minute forest.</p>
+              <details class="review__more">
+                <summary>Read the full review</summary>
+                <p>Nobody swings between crushing growls and fragile acoustic passages like Opeth, and this is where they perfected the formula. "The Drapery Falls" is the entry drug; the title track is the point of no return. Half a point off only because it ruined every lesser prog record for me.</p>
+              </details>
+            </div>
+          </article>
+
+          <article class="card review reveal">
+            <div class="review__art" aria-hidden="true">
+              <div class="review__disc"></div>
+              <div class="review__cover" style="--c1:#4d2f16;--c2:#170d05;">
+                <span>THE JOY OF MOTION</span>
+              </div>
+            </div>
+            <div class="review__body">
+              <p class="review__meta mono">Animals as Leaders · 2014 · Instrumental prog</p>
+              <h3 class="review__title">The Joy of Motion</h3>
+              <p class="review__rating" aria-label="Rating: 4 out of 5">
+                <span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot"></span>
+                <span class="review__score mono">4.0</span>
+              </p>
+              <p class="review__hook">Eight strings, zero vocals, infinite humility for guitarists.</p>
+              <details class="review__more">
+                <summary>Read the full review</summary>
+                <p>Tosin Abasi plays guitar the way the rest of us wish we thought about music. "Physical Education" grooves harder than most albums with drummers twice as loud. It loses a point only because listening to it while practicing is actively demoralizing.</p>
+              </details>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ CONTACT ============ -->
+    <footer class="footer" id="contact">
+      <div class="container footer__inner">
+        <h2 class="footer__title reveal">Let's build something.</h2>
+        <p class="footer__sub reveal">Internships, collaborations, or a question about my homelab — my inbox is open.</p>
+        <a class="btn btn--primary btn--lg magnetic reveal" href="mailto:tedistoyanov06ie@gmail.com">tedistoyanov06ie@gmail.com</a>
+        <nav class="footer__links reveal" aria-label="Social links">
+          <a href="https://github.com/TeodorStS" target="_blank" rel="noopener">GitHub</a>
+          <a href="https://linkedin.com/in/teodor-stoyanov-aab920386" target="_blank" rel="noopener">LinkedIn</a>
+          <a href="mailto:tedistoyanov06ie@gmail.com">Email</a>
+        </nav>
+        <p class="footer__fine mono">© 2026 Teodor Stoyanov · Dublin, Ireland</p>
+      </div>
+    </footer>
+
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
