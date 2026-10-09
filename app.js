@@ -322,3 +322,26 @@ const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matc
     }, 600);
   }
 })();
+
+/* "more projects" toaster — press to flip the toast */
+(function toaster() {
+  const btn = document.getElementById("toastBtn");
+  if (!btn) return;
+  const front = document.getElementById("toastFront");
+  const back = document.getElementById("toastBack");
+  let pointerType = "keyboard";
+
+  btn.addEventListener("pointerdown", (e) => { pointerType = e.pointerType; });
+  btn.addEventListener("click", () => {
+    // touch has no hover, so the first tap just pops the toast up
+    if (pointerType !== "mouse" && pointerType !== "keyboard" && !btn.classList.contains("is-open")) {
+      btn.classList.add("is-open");
+    } else {
+      const flipped = btn.classList.toggle("is-flipped");
+      btn.setAttribute("aria-pressed", String(flipped));
+      front.setAttribute("aria-hidden", String(flipped));
+      back.setAttribute("aria-hidden", String(!flipped));
+    }
+    pointerType = "keyboard";
+  });
+})();

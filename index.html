@@ -151,7 +151,29 @@
 
         </div>
 
-        <p class="projects__more reveal">I've also built and deployed websites for local and family businesses. <a href="https://github.com/TeodorStS" target="_blank" rel="noopener">More on GitHub →</a></p>
+        <!-- "more projects" toaster: hover pops the toast, press flips it (adapted from a uiverse.io toaster tooltip) -->
+        <div class="toast reveal">
+          <button class="toast__btn" id="toastBtn" type="button" aria-pressed="false">
+            <span class="toast__bubble">
+              <span class="toast__card">
+                <span class="toast__face toast__face--front" id="toastFront">I'm currently working on more projects.<small>press me</small></span>
+                <span class="toast__face toast__face--back" id="toastBack" aria-hidden="true">Updates will be posted soon!</span>
+              </span>
+            </span>
+            <span class="toast__toaster" aria-hidden="true">
+              <svg viewBox="0 0 88 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path class="toaster__block" d="M13.9561 1.74707H67.7607C73.9513 1.74707 78.9695 6.76558 78.9697 12.9561V48.0791H2.74707V12.9561C2.74733 6.76574 7.76574 1.74732 13.9561 1.74707Z" stroke-width="1.49457"/>
+                <rect class="toaster__base" x="2.5" y="43.3478" width="76.7174" height="4.97826"/>
+                <path class="toaster__lever" d="M84.2008 13.3305C84.8197 13.3305 85.3217 13.8318 85.3219 14.4507V17.4399C85.3219 18.059 84.8199 18.561 84.2008 18.561H80.0914V13.3305H84.2008Z" stroke-width="0.747283"/>
+                <path d="M8.22558 18.9348C8.22558 18.9348 6.95407 11.7886 10.1771 8.8166C12.9835 6.22883 19.9348 7.13024 19.9348 7.13024" stroke="white" stroke-opacity="0.125" stroke-width="1.49457"/>
+                <circle class="toaster__knob toaster__timer" cx="67.7609" cy="24.913" r="2.98913"/>
+                <circle cx="67.7609" cy="24.913" r="3.36277" stroke="white" stroke-opacity="0.5" stroke-width="0.747283" stroke-linecap="square"/>
+                <circle class="toaster__knob" cx="67.7609" cy="33.8804" r="2.98913"/>
+                <circle cx="67.7609" cy="33.8804" r="3.36277" stroke="white" stroke-opacity="0.5" stroke-width="0.747283" stroke-linecap="square"/>
+              </svg>
+            </span>
+          </button>
+        </div>
       </div>
     </section>
 
