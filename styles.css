@@ -401,9 +401,6 @@ body, .nav, .card, .footer, .section--warm { transition: background-color .3s, b
   font-family: var(--font-display); font-weight: 600;
   font-size: clamp(1.9rem, 5vw, 3rem); margin-bottom: .8rem;
 }
-.footer__sub { color: #aebab6; max-width: 30rem; margin: 0 auto 1.8rem; }
-.footer .btn--primary { background: var(--mint); color: #10221e; }
-.footer .btn--primary:hover { background: #4ecdb6; }
 /* social buttons — layered icon, profile card above, label below */
 .socials {
   display: flex; justify-content: center; gap: 2.6rem;
