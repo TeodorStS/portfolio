@@ -489,6 +489,8 @@ body, .nav, .card, .footer, .section--warm { transition: background-color .3s, b
   .social:first-child:hover .social__card, .social:first-child:focus-within .social__card,
   .social:last-child:hover .social__card, .social:last-child:focus-within .social__card { transform: translate(0, 0); }
 }
+.footer .btn--primary { background: var(--mint); color: #10221e; }
+.footer .btn--primary:hover { background: #4ecdb6; }
 .footer__fine { color: #7d8a86; font-size: .74rem; }
 .footer__fine a { color: #7d8a86; }
 .footer__fine a:hover { color: var(--mint); }
