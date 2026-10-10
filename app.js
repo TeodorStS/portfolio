@@ -323,25 +323,15 @@ const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matc
   }
 })();
 
-/* "more projects" toaster — press to flip the toast */
+/* toaster — pops the toast once on its own when it first scrolls into view */
 (function toaster() {
-  const btn = document.getElementById("toastBtn");
-  if (!btn) return;
-  const front = document.getElementById("toastFront");
-  const back = document.getElementById("toastBack");
-  let pointerType = "keyboard";
-
-  btn.addEventListener("pointerdown", (e) => { pointerType = e.pointerType; });
-  btn.addEventListener("click", () => {
-    // touch has no hover, so the first tap just pops the toast up
-    if (pointerType !== "mouse" && pointerType !== "keyboard" && !btn.classList.contains("is-open")) {
-      btn.classList.add("is-open");
-    } else {
-      const flipped = btn.classList.toggle("is-flipped");
-      btn.setAttribute("aria-pressed", String(flipped));
-      front.setAttribute("aria-hidden", String(flipped));
-      back.setAttribute("aria-hidden", String(!flipped));
-    }
-    pointerType = "keyboard";
-  });
+  const el = document.getElementById("toaster");
+  if (!el) return;
+  const io = new IntersectionObserver(([entry]) => {
+    if (!entry.isIntersecting) return;
+    io.disconnect();
+    setTimeout(() => el.classList.add("is-popped"), 500);
+    setTimeout(() => el.classList.remove("is-popped"), 3800);
+  }, { threshold: 0.8 });
+  io.observe(el);
 })();

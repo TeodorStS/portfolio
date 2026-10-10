@@ -303,31 +303,37 @@ body, .nav, .card, .footer, .section--warm { transition: background-color .3s, b
 .project__steps span { color: var(--mint-deep); font-size: .75rem; }
 @media (max-width: 760px) { .project--featured { grid-template-columns: 1fr; } }
 
-/* "more projects" toaster — hover pops the toast, press flips it */
-.toast {
-  display: flex; justify-content: center;
-  margin-top: 7.5rem;   /* room for the toast to pop up */
+/* heading row: title on the left, toaster on the right */
+.projects__head {
+  display: flex; align-items: flex-end; justify-content: space-between; gap: 2rem;
+}
+@media (max-width: 640px) {
+  .projects__head { flex-direction: column; align-items: center; gap: 0; }
+  .projects__head .toaster { margin: 8.5rem 0 2.4rem; }
+}
+
+/* toaster — a slice of toast pops up on hover, and once on its own when first seen */
+.toaster {
   --spring: linear(0, 0.009, 0.035 2.1%, 0.141, 0.281 6.7%, 0.723 12.9%, 0.938 16.7%, 1.017, 1.077,
     1.121, 1.149 24.3%, 1.159, 1.163, 1.161, 1.154 29.9%, 1.129 32.8%, 1.051 39.6%, 1.017 43.1%,
     0.991, 0.977 51%, 0.974 53.8%, 0.975 57.1%, 0.997 69.8%, 1.003 76.9%, 1.004 83.8%, 1);
   --elastic: linear(0, 0.01566 4.55%, 0.0625 9.091%, 0.25, 0.5625, 1, 0.8125 45.455%, 0.76566 49.995%,
     0.75, 0.76566 59.096%, 0.8125 63.636%, 1 72.727%, 0.95316 77.268%, 0.9375 81.818%,
     0.95309 86.359%, 1 90.909%, 0.98438 95.45%, 1);
-}
-.toast__btn {
   position: relative; isolation: isolate;
-  background: none; border: 0; padding: 0;
-  font: inherit; color: inherit; cursor: pointer;
+  flex-shrink: 0;
+  margin: 0 3.2rem 2.4rem 0;   /* the toast pops up into the empty space beside the heading */
+  cursor: pointer;
+  outline: none;
 }
-.toast__btn:focus-visible { outline: 2px solid var(--mint); outline-offset: 6px; border-radius: 8px; }
+.toaster:focus-visible .toaster__body { outline: 2px solid var(--mint); outline-offset: 6px; border-radius: 8px; }
 
-/* the toaster itself */
-.toast__toaster { position: relative; z-index: 1; display: block; width: 116px; }
-.toast__toaster svg { display: block; width: 100%; height: auto; transition: transform .5s var(--elastic); }
-.toast__toaster::after {   /* soft shadow underneath */
-  content: ""; position: absolute; left: 6%; bottom: -6px; z-index: -1;
-  width: 82%; height: 10px; border-radius: 50%;
-  background: rgba(0, 0, 0, .35); filter: blur(8px);
+.toaster__body { position: relative; z-index: 1; display: block; width: 180px; }
+.toaster__body svg { display: block; width: 100%; height: auto; }
+.toaster__body::after {   /* soft shadow underneath */
+  content: ""; position: absolute; left: 6%; bottom: -8px; z-index: -1;
+  width: 82%; height: 12px; border-radius: 50%;
+  background: rgba(0, 0, 0, .3); filter: blur(9px);
 }
 .toaster__block { fill: #34443f; stroke: #c3cfcb; transition: fill .15s ease-out; }
 .toaster__base { fill: #9fb0aa; stroke: #c3cfcb; }
@@ -343,50 +349,44 @@ body, .nav, .card, .footer, .section--warm { transition: background-color .3s, b
 }
 @keyframes toasterTimer { to { outline-color: var(--mint-deep); outline-offset: -2px; } }
 
-/* the toast: starts tucked inside the toaster, rises out on hover */
-.toast__bubble {
-  position: absolute; left: 50%; bottom: 35%; z-index: -1;
-  transform: translateX(-50%);
-  width: 24ch;
-  perspective: 700px;
+/* the slice of toast: crust border, golden middle, toasted bottom */
+.toaster__toast {
+  position: absolute; left: 46%; bottom: 30%; z-index: -1;
+  transform: translateX(-50%) rotate(-3deg);
+  width: 150px; min-height: 140px;
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: .35rem;
+  padding: 1.4rem .9rem 1.6rem;
+  font-family: var(--font-display); font-size: 1.02rem; font-weight: 600; line-height: 1.2;
+  text-align: center; color: #4b3d14;
+  text-shadow: -1px 0 rgba(183, 162, 130, .6);
+  background: linear-gradient(#efe3b8 0%, #dcc98c 55%, #a8863a 100%);
+  border: 7px solid #8a6a25;
+  outline: 2px solid rgba(100, 86, 32, .3); outline-offset: -11px;
+  border-radius: 46% 46% 14% 14% / 34% 34% 10% 10%;   /* bread-slice shape */
   opacity: 0; pointer-events: none;
-  transition: bottom .5s var(--spring), opacity .3s ease;
+  transition: bottom .55s var(--spring), opacity .3s ease, transform .55s var(--spring);
 }
-.toast__card {
-  display: grid;
-  transform-style: preserve-3d;
-  transition: transform .6s cubic-bezier(.34, 1.56, .64, 1);
+.toaster__toast small {
+  font-family: var(--font-mono); font-size: .66rem; font-weight: 500; color: #6d561c; text-shadow: none;
 }
-.toast__face {
-  grid-area: 1 / 1;
-  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: .2rem;
-  padding: .9rem .8rem 1.7rem;
-  font-size: .9rem; font-weight: 600; line-height: 1.3; text-align: center;
-  color: var(--ink);
-  background: linear-gradient(var(--mint-soft) 55%, color-mix(in srgb, var(--mint) 45%, var(--mint-soft)) 100%);
-  border: 5px solid color-mix(in srgb, var(--mint-deep) 75%, var(--ink));
-  outline: 2px solid color-mix(in srgb, var(--mint-deep) 30%, transparent);
-  outline-offset: -9px;
-  border-radius: 1em 1em .6em .6em;
-  backface-visibility: hidden;
-}
-.toast__face small { font-family: var(--font-mono); font-size: .7rem; font-weight: 500; color: var(--mint-deep); }
-.toast__face--back { transform: rotateY(180deg); }
 
-.toast__btn:hover .toast__bubble,
-.toast__btn:focus-visible .toast__bubble,
-.toast__btn.is-open .toast__bubble { bottom: calc(100% - 10px); opacity: 1; }
-.toast__btn:hover .toaster__lever,
-.toast__btn.is-open .toaster__lever { translate: 0; fill: var(--mint-deep); }
-.toast__btn:hover .toaster__block,
-.toast__btn.is-open .toaster__block { fill: var(--mint); }
-.toast__btn:hover .toaster__timer,
-.toast__btn.is-open .toaster__timer { animation-play-state: paused; }
-.toast__btn:hover .toast__toaster svg { animation: toasterJump 2s var(--elastic) forwards -.5s; }
-.toast__btn.is-flipped .toast__card { transform: rotateY(180deg); }
+/* popped state: hover, keyboard focus, or the automatic first pop */
+.toaster:hover .toaster__toast,
+.toaster:focus-visible .toaster__toast,
+.toaster.is-popped .toaster__toast { bottom: 86%; opacity: 1; transform: translateX(-50%) rotate(-5deg); }
+.toaster:hover .toaster__lever,
+.toaster:focus-visible .toaster__lever,
+.toaster.is-popped .toaster__lever { translate: 0; fill: var(--mint-deep); }
+.toaster:hover .toaster__block,
+.toaster:focus-visible .toaster__block,
+.toaster.is-popped .toaster__block { fill: var(--mint); }
+.toaster:hover .toaster__timer,
+.toaster.is-popped .toaster__timer { animation-play-state: paused; }
+.toaster:hover .toaster__body svg,
+.toaster.is-popped .toaster__body svg { animation: toasterJump 2s var(--elastic) forwards -.5s; }
 @keyframes toasterJump {
   0%, 50% { transform: translateY(0); }
-  25% { transform: translateY(-.6em) rotate(-4deg); }
+  25% { transform: translateY(-.7em) rotate(-4deg); }
 }
 
 /* ============ experience timeline ============ */
@@ -695,6 +695,6 @@ html { scroll-snap-type: y proximity; }
   .card, .btn { transition: none; }
   .review:hover .review__disc { animation: none; transform: none; }
   .rail a.plucked .rail__string { animation: none; }
-  .toaster__timer, .toast__btn:hover .toast__toaster svg { animation: none; }
-  .toast__bubble, .toast__card, .toaster__lever { transition: none; }
+  .toaster__timer, .toaster:hover .toaster__body svg, .toaster.is-popped .toaster__body svg { animation: none; }
+  .toaster__toast, .toaster__lever { transition: none; }
 }
