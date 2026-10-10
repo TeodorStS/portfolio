@@ -204,7 +204,7 @@ const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matc
     intro: "intro", home: "intro",
     projects: "projects", experience: "experience",
     skills: "skills",
-    reviews: "reviews", contact: "contact",
+    contact: "contact",
   };
   function goto(name) {
     const el = document.getElementById(SECTIONS[name]);
@@ -214,7 +214,7 @@ const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matc
 
   const CMDS = {
     help() {
-      write("commands: whoami · jumpflip · homelab · projects · experience · skills · reviews · contact · coffee · ls · clear", "t-accent");
+      write("commands: whoami · jumpflip · homelab · projects · experience · skills · contact · coffee · ls · clear", "t-accent");
       write("…and a few undocumented ones. poke around.", "t-muted");
     },
     whoami() {
@@ -232,13 +232,12 @@ const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matc
     skills() { goto("skills"); },
     projects() { goto("projects"); },
     experience() { goto("experience"); },
-    reviews() { goto("reviews"); },
     contact() { goto("contact"); },
     coffee() {
       write("brewing… ░▒▓█", "t-muted");
       setTimeout(() => write("☕ ready. productivity +20%, jitters +40%."), 800);
     },
-    ls() { write("projects/  experience/  skills/  reviews/  secrets/"); },
+    ls() { write("projects/  experience/  skills/  secrets/"); },
     pwd() { write("/home/teodor/portfolio"); },
     clear() { out.innerHTML = ""; },
     date() { write(new Date().toString()); },

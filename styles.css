@@ -431,48 +431,6 @@ body, .nav, .card, .footer, .section--warm { transition: background-color .3s, b
 .lang-list li:last-child { border-bottom: none; }
 .lang-list .mono { color: var(--mint-deep); font-size: .8rem; }
 
-/* ============ reviews ============ */
-.reviews { display: grid; gap: 1.3rem; }
-.review {
-  display: grid; grid-template-columns: 130px 1fr;
-  gap: 1.5rem; align-items: start;
-}
-.review__cover {
-  width: 130px; height: 130px; border-radius: 10px;
-  background: linear-gradient(150deg, var(--c1, #444), var(--c2, #111));
-  display: flex; align-items: center; justify-content: center;
-  text-align: center; padding: .6rem;
-  box-shadow: 0 8px 20px rgba(28,43,40,.18);
-}
-.review__cover span {
-  font-family: var(--font-display); font-weight: 700; font-size: .72rem;
-  letter-spacing: .14em; color: rgba(255,255,255,.85); line-height: 1.5;
-}
-.review__meta { font-size: .72rem; color: var(--mint-deep); letter-spacing: .12em; text-transform: uppercase; margin-bottom: .25rem; }
-.review__title { font-family: var(--font-display); font-weight: 600; font-size: 1.4rem; margin-bottom: .45rem; }
-.review__rating { display: flex; align-items: center; gap: .3rem; margin-bottom: .7rem; }
-.dot {
-  width: 11px; height: 11px; border-radius: 50%;
-  background: var(--line);
-}
-.dot.on { background: var(--mint); }
-.dot.half { background: linear-gradient(90deg, var(--mint) 50%, var(--line) 50%); }
-.review__score { margin-left: .4rem; font-size: .78rem; color: var(--muted); }
-.review__hook { font-weight: 500; margin-bottom: .6rem; }
-.review__more summary {
-  cursor: pointer; color: var(--mint-deep); font-size: .88rem; font-weight: 600;
-  list-style: none; width: fit-content;
-}
-.review__more summary::-webkit-details-marker { display: none; }
-.review__more summary:hover { text-decoration: underline; }
-.review__more p {
-  margin-top: .65rem; color: var(--muted); font-size: .95rem;
-  border-left: 3px solid var(--mint); padding-left: 1rem;
-}
-@media (max-width: 560px) {
-  .review { grid-template-columns: 1fr; }
-}
-
 /* ============ footer ============ */
 .footer {
   background: var(--footer-bg); color: #f2efe8;
@@ -664,36 +622,12 @@ html { scroll-snap-type: y proximity; }
 }
 .project:hover::after { opacity: 1; }
 
-/* EFFECT 9: vinyl peeks out of the album sleeve on hover */
-.review__art { position: relative; width: 130px; height: 130px; }
-.review__disc {
-  position: absolute; inset: 5px; z-index: 0;
-  border-radius: 50%;
-  background:
-    radial-gradient(circle, var(--mint) 0 16%, #12100e 16% 19%,
-      #201d1a 19% 26%, #14110f 26% 34%, #1e1b18 34% 44%,
-      #13100e 44% 56%, #1d1a17 56% 70%, #100e0c 70% 86%, #1a1714 86% 100%);
-  box-shadow: 2px 4px 12px rgba(28, 43, 40, .3);
-  transition: transform .45s cubic-bezier(.2, .75, .3, 1.1);
-}
-.review:hover .review__disc {
-  transform: translateX(40px) rotate(70deg);
-  animation: discSpin 4s linear .45s infinite;
-}
-@keyframes discSpin {
-  from { transform: translateX(40px) rotate(70deg); }
-  to   { transform: translateX(40px) rotate(430deg); }
-}
-.review__cover { position: relative; z-index: 1; }
-.review__body { position: relative; z-index: 2; }
-
 /* reduced motion */
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; scroll-snap-type: none; }
   .caret { animation: none; }
   .reveal { opacity: 1; transform: none; transition: none; }
   .card, .btn { transition: none; }
-  .review:hover .review__disc { animation: none; transform: none; }
   .rail a.plucked .rail__string { animation: none; }
   .toaster__timer, .toaster:hover .toaster__body svg, .toaster.is-popped .toaster__body svg { animation: none; }
   .toaster__toast, .toaster__lever { transition: none; }
